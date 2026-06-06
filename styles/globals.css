@@ -1,38 +1,84 @@
-@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap');
-
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-:root {
-  --ink: #0f0f0f;
-  --ink2: #3a3a3a;
-  --ink3: #6b6b6b;
-  --paper: #fafaf8;
-  --surface: #f2f1ed;
-  --surface2: #e8e7e1;
-  --accent: #d4a843;
-  --accent2: #c4853a;
-  --green: #2d6a4f;
-  --red: #c0392b;
-  --border: rgba(0,0,0,0.1);
-  --radius: 12px;
-  --shadow: 0 2px 20px rgba(0,0,0,0.07);
+/* Classy, exotic, luxe global background */
+html, body, #__next {
+  height: 100%;
 }
 
-html { font-size: 16px; }
-body {
-  font-family: 'DM Sans', sans-serif;
-  background: var(--paper);
-  color: var(--ink);
-  line-height: 1.6;
-  min-height: 100vh;
+:root{
+  --bg-dark-1: #07121a; /* deep midnight */
+  --bg-dark-2: #2b1f28; /* warm plum */
+  --accent-gold: rgba(212,175,55,0.95);
+  --muted-text: #efe8df;
 }
 
-h1, h2, h3, h4 { font-family: 'Syne', sans-serif; }
+*{box-sizing:border-box}
+body{
+  margin: 0;
+  color: var(--muted-text);
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+  /* layered background: deep gradient, subtle vignette, and elegant gold speckle SVG */
+  background-color: var(--bg-dark-1);
+  background-image:
+    radial-gradient(1000px 600px at 10% 10%, rgba(255,240,220,0.03), transparent 15%),
+    linear-gradient(135deg, var(--bg-dark-1) 0%, var(--bg-dark-2) 60%),
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300' viewBox='0 0 300 300'><defs><radialGradient id='g' cx='50%' cy='50%' r='50%'><stop offset='0' stop-color='%23d4af37' stop-opacity='0.08'/><stop offset='1' stop-color='%23d4af37' stop-opacity='0.00'/></radialGradient></defs><rect width='300' height='300' fill='none'/><circle cx='20' cy='40' r='1.2' fill='%23d4af37' fill-opacity='0.06'/><circle cx='70' cy='200' r='1.1' fill='%23d4af37' fill-opacity='0.04'/><circle cx='240' cy='80' r='1.4' fill='%23d4af37' fill-opacity='0.05'/><rect x='0' y='0' width='300' height='300' fill='url(%23g)'/></svg>");
+  background-repeat: no-repeat, no-repeat, repeat;
+  background-size: cover, cover, 700px;
+  background-attachment: fixed, fixed, scroll;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
 
-/* Scrollbar */
-::-webkit-scrollbar { width: 6px; }
-::-webkit-scrollbar-track { background: var(--surface); }
-::-webkit-scrollbar-thumb { background: var(--surface2); border-radius: 3px; }
+/* Subtle overlay to give a luxe sheen using pseudo element on the root container */
+#__next::before{
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.18));
+  mix-blend-mode: overlay;
+}
 
-/* Selection */
-::selection { background: var(--accent); color: white; }
+/* Container utility for content card look */
+.luxe-container{
+  max-width: 980px;
+  margin: 48px auto;
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  border: 1px solid rgba(212,175,55,0.06);
+  backdrop-filter: blur(6px) saturate(120%);
+  padding: 28px;
+  border-radius: 12px;
+}
+
+/* Headings with subtle gold accent */
+h1, h2, h3{
+  color: var(--muted-text);
+  letter-spacing: 0.2px;
+}
+
+.gold-accent{
+  display: inline-block;
+  position: relative;
+}
+.gold-accent::after{
+  content: '';
+  position: absolute;
+  left: -6px;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 2px;
+  width: 24px;
+  background: linear-gradient(90deg, rgba(212,175,55,0) 0%, var(--accent-gold) 50%, rgba(212,175,55,0) 100%);
+  opacity: 0.95;
+}
+
+a{ color: #f6e7c7; text-decoration: underline dotted rgba(212,175,55,0.12); }
+
+/* Tunables for darker or lighter mood */
+.luxe--dark { --bg-dark-1: #02060a; --bg-dark-2: #1a0f12 }
+.luxe--warm { --bg-dark-1: #0b1210; --bg-dark-2: #2b1812 }
+
+/* Accessibility: ensure sufficient contrast for body text */
+@media (prefers-contrast: more){
+  body { color: #fff; }
+}
+

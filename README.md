@@ -7,18 +7,7 @@ A production-ready AI writing assistant built with Next.js + Claude API.
 
 ## 🚀 Quick Start (Local)
 
-```bash
-# 1. Install dependencies
 npm install
-
-# 2. Set your API key
-cp .env.example .env.local
-# Edit .env.local → add your ANTHROPIC_API_KEY
-
-# 3. Run locally
-npm run dev
-# Open http://localhost:3000
-```
 
 Get your Anthropic API key: https://console.anthropic.com
 
@@ -179,3 +168,6 @@ ai-writer/
 
 Built with ❤️ using Claude AI by Anthropic.
 Questions? Open an issue on GitHub.
+cd ~/Downloads/ai-writer
+npm install
+npm run dev
